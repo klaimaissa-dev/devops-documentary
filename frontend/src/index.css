@@ -1,0 +1,53 @@
+/* Design tokens — change these to retheme the entire app */
+:root {
+  --font:      'Inter', system-ui, sans-serif;
+  --font-mono: 'Courier New', monospace;
+
+  --bg:       #0d0f14;
+  --surface:  #141720;
+  --surface2: #1c2030;
+  --border:   #2a2f42;
+
+  --text-primary:   #e8eaf2;
+  --text-secondary: #8891aa;
+  --text-muted:     #555e78;
+
+  --blue:       #378ADD;
+  --blue-light: #85B7EB;
+  --teal:       #1D9E75;
+  --amber:      #EF9F27;
+  --coral:      #D85A30;
+  --purple:     #7F77DD;
+  --red:        #E24B4A;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
