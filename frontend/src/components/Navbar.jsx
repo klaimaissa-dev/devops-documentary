@@ -19,7 +19,6 @@ export default function Navbar({ activePage, setActivePage }) {
       <div style={{ fontSize: '15px', fontWeight: 600, letterSpacing: '-0.3px' }}>
         dev<span style={{ color: 'var(--blue)' }}>ops</span>.documentary
       </div>
-
       <div style={{ display: 'flex', gap: '4px' }}>
         {PAGES.map((p) => (
           <button key={p.id} onClick={() => setActivePage(p.id)} style={{

@@ -16,9 +16,8 @@ export default function AnimatedChain() {
   const [active, setActive] = useState(0);
 
   useEffect(() => {
-    // Cycle through phases every 750ms
     const t = setInterval(() => setActive((i) => (i + 1) % PHASES.length), 750);
-    return () => clearInterval(t); // cleanup prevents memory leak on unmount
+    return () => clearInterval(t);
   }, []);
 
   return (
@@ -26,7 +25,6 @@ export default function AnimatedChain() {
       padding: '8px 0 12px', scrollbarWidth: 'none' }}>
       {PHASES.map((p, i) => (
         <React.Fragment key={p.label}>
-          {/* Node */}
           <div style={{ flexShrink: 0, display: 'flex', flexDirection: 'column',
             alignItems: 'center', gap: '6px' }}>
             <div style={{
@@ -50,7 +48,6 @@ export default function AnimatedChain() {
               {p.label}
             </span>
           </div>
-          {/* Arrow connector */}
           {i < PHASES.length - 1 && (
             <div style={{ width: '24px', flexShrink: 0, height: '1px',
               background: 'var(--border)', position: 'relative', top: '-12px' }} />

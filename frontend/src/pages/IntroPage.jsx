@@ -19,9 +19,11 @@ export default function IntroPage({ setActivePage }) {
     <div style={{ padding: '0 32px 64px', animation: 'fadeInUp 0.5s ease both' }}>
 
       {/* Hero */}
-      <div style={{ padding: '60px 0 48px', textAlign: 'center', maxWidth: '540px', margin: '0 auto' }}>
-        <div style={{ fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase',
-          color: 'var(--blue)', fontWeight: 500, marginBottom: '18px' }}>
+      <div style={{ padding: '60px 0 48px', textAlign: 'center',
+        maxWidth: '540px', margin: '0 auto' }}>
+        <div style={{ fontSize: '11px', letterSpacing: '2.5px',
+          textTransform: 'uppercase', color: 'var(--blue)',
+          fontWeight: 500, marginBottom: '18px' }}>
           A visual documentary
         </div>
         <h1 style={{ fontSize: '40px', fontWeight: 600, lineHeight: 1.12,
@@ -30,8 +32,8 @@ export default function IntroPage({ setActivePage }) {
           <span style={{ color: 'var(--blue)' }}>trust</span>
         </h1>
         <p style={{ fontSize: '15px', color: 'var(--text-secondary)', lineHeight: 1.75 }}>
-          DevOps unites development and operations into one continuous, automated,
-          and monitored loop — so teams ship better software, faster.
+          DevOps unites development and operations into one continuous,
+          automated, and monitored loop — so teams ship better software, faster.
         </p>
       </div>
 
@@ -46,27 +48,35 @@ export default function IntroPage({ setActivePage }) {
       </div>
 
       {/* Stats */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '12px', marginBottom: '32px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)',
+        gap: '12px', marginBottom: '32px' }}>
         {STATS.map(s => (
-          <div key={s.value} style={{ background: 'var(--surface)', border: '0.5px solid var(--border)',
-            borderRadius: 'var(--radius-lg)', padding: '24px 20px', textAlign: 'center' }}>
-            <div style={{ fontSize: '30px', fontWeight: 600, letterSpacing: '-1.5px',
-              color: s.color, marginBottom: '8px' }}>{s.value}</div>
-            <div style={{ fontSize: '12px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>{s.label}</div>
+          <div key={s.value} style={{ background: 'var(--surface)',
+            border: '0.5px solid var(--border)', borderRadius: 'var(--radius-lg)',
+            padding: '24px 20px', textAlign: 'center' }}>
+            <div style={{ fontSize: '30px', fontWeight: 600,
+              letterSpacing: '-1.5px', color: s.color, marginBottom: '8px' }}>
+              {s.value}
+            </div>
+            <div style={{ fontSize: '12px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+              {s.label}
+            </div>
           </div>
         ))}
       </div>
 
       {/* Pillars */}
-      <div style={{ fontSize: '13px', fontWeight: 500, color: 'var(--text-secondary)', marginBottom: '14px' }}>
+      <div style={{ fontSize: '13px', fontWeight: 500,
+        color: 'var(--text-secondary)', marginBottom: '14px' }}>
         Three pillars of DevOps
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
         {PILLARS.map(p => (
-          <div key={p.title} onClick={() => setActivePage(p.page)}
-            style={{ background: 'var(--surface)', border: '0.5px solid var(--border)',
-              borderRadius: 'var(--radius-lg)', padding: '18px 20px', cursor: 'pointer',
-              transition: 'border-color 0.2s' }}
+          <div key={p.title} onClick={() => setActivePage(p.page)} style={{
+            background: 'var(--surface)', border: '0.5px solid var(--border)',
+            borderRadius: 'var(--radius-lg)', padding: '18px 20px',
+            cursor: 'pointer', transition: 'border-color 0.2s',
+          }}
             onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--blue)'}
             onMouseLeave={e => e.currentTarget.style.borderColor = 'var(--border)'}>
             <div style={{ width: '30px', height: '30px', borderRadius: 'var(--radius-sm)',
@@ -74,8 +84,12 @@ export default function IntroPage({ setActivePage }) {
               justifyContent: 'center', marginBottom: '12px', fontSize: '15px' }}>
               {p.icon}
             </div>
-            <div style={{ fontSize: '13px', fontWeight: 500, marginBottom: '5px' }}>{p.title}</div>
-            <div style={{ fontSize: '12px', color: 'var(--text-secondary)', lineHeight: 1.55 }}>{p.desc}</div>
+            <div style={{ fontSize: '13px', fontWeight: 500, marginBottom: '5px' }}>
+              {p.title}
+            </div>
+            <div style={{ fontSize: '12px', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
+              {p.desc}
+            </div>
           </div>
         ))}
       </div>

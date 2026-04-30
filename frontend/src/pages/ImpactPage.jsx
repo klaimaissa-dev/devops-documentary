@@ -9,10 +9,10 @@ const COMPANIES = [
 ];
 
 const BARS = [
-  { label: 'Elite',   note: 'Multiple deploys/day',    pct: 95, color: 'var(--teal)'   },
-  { label: 'High',    note: 'Once/week to once/day',   pct: 68, color: 'var(--blue)'   },
-  { label: 'Medium',  note: 'Once/week to once/month', pct: 40, color: 'var(--amber)'  },
-  { label: 'Low',     note: 'Once/month or less',      pct: 18, color: 'var(--red)'    },
+  { label: 'Elite',  note: 'Multiple deploys/day',     pct: 95, color: 'var(--teal)'  },
+  { label: 'High',   note: 'Once/week to once/day',    pct: 68, color: 'var(--blue)'  },
+  { label: 'Medium', note: 'Once/week to once/month',  pct: 40, color: 'var(--amber)' },
+  { label: 'Low',    note: 'Once/month or less',       pct: 18, color: 'var(--red)'   },
 ];
 
 function BarChart() {
@@ -20,7 +20,6 @@ function BarChart() {
   const ref = useRef(null);
 
   useEffect(() => {
-    // Animate bars only when they scroll into view
     const obs = new IntersectionObserver(
       ([e]) => { if (e.isIntersecting) setGo(true); },
       { threshold: 0.3 }
@@ -41,7 +40,8 @@ function BarChart() {
             <span style={{ color: 'var(--text-secondary)' }}>{b.label} performers</span>
             <span style={{ color: 'var(--text-muted)' }}>{b.note}</span>
           </div>
-          <div style={{ height: '7px', background: 'var(--surface2)', borderRadius: '4px', overflow: 'hidden' }}>
+          <div style={{ height: '7px', background: 'var(--surface2)',
+            borderRadius: '4px', overflow: 'hidden' }}>
             <div style={{
               height: '100%', borderRadius: '4px', background: b.color,
               width: go ? `${b.pct}%` : '0%',
@@ -57,23 +57,33 @@ function BarChart() {
 export default function ImpactPage({ setActivePage }) {
   return (
     <div style={{ padding: '32px', animation: 'fadeInUp 0.5s ease both' }}>
+
       <div style={{ fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase',
         color: 'var(--blue)', fontWeight: 500, marginBottom: '8px' }}>
         Industry impact
       </div>
-      <h2 style={{ fontSize: '24px', fontWeight: 600, letterSpacing: '-0.5px', marginBottom: '24px' }}>
+      <h2 style={{ fontSize: '24px', fontWeight: 600,
+        letterSpacing: '-0.5px', marginBottom: '24px' }}>
         Why every company is going DevOps
       </h2>
 
       {/* Company cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '32px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr',
+        gap: '10px', marginBottom: '32px' }}>
         {COMPANIES.map(co => (
-          <div key={co.name} style={{ background: 'var(--surface)', border: '0.5px solid var(--border)',
+          <div key={co.name} style={{ background: 'var(--surface)',
+            border: '0.5px solid var(--border)',
             borderRadius: 'var(--radius-lg)', padding: '18px 20px' }}>
-            <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginBottom: '6px' }}>{co.name}</div>
-            <div style={{ fontSize: '26px', fontWeight: 600, letterSpacing: '-1px',
-              color: co.color, marginBottom: '8px' }}>{co.stat}</div>
-            <div style={{ fontSize: '12px', color: 'var(--text-secondary)', lineHeight: 1.55 }}>{co.desc}</div>
+            <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginBottom: '6px' }}>
+              {co.name}
+            </div>
+            <div style={{ fontSize: '26px', fontWeight: 600,
+              letterSpacing: '-1px', color: co.color, marginBottom: '8px' }}>
+              {co.stat}
+            </div>
+            <div style={{ fontSize: '12px', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
+              {co.desc}
+            </div>
           </div>
         ))}
       </div>
@@ -84,7 +94,8 @@ export default function ImpactPage({ setActivePage }) {
       <div style={{ background: 'var(--surface)', borderLeft: '3px solid var(--blue)',
         borderRadius: '0 var(--radius-lg) var(--radius-lg) 0',
         padding: '20px 24px', marginBottom: '32px' }}>
-        <div style={{ fontSize: '15px', fontStyle: 'italic', lineHeight: 1.65, marginBottom: '10px' }}>
+        <div style={{ fontSize: '15px', fontStyle: 'italic',
+          lineHeight: 1.65, marginBottom: '10px' }}>
           "DevOps is not a goal, but a never-ending process of continual improvement."
         </div>
         <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
@@ -98,10 +109,11 @@ export default function ImpactPage({ setActivePage }) {
 
       <hr style={{ border: 'none', borderTop: '0.5px solid var(--border)', margin: '32px 0' }} />
 
-      <button onClick={() => setActivePage('chain')}
-        style={{ background: 'transparent', border: '0.5px solid var(--border)',
-          borderRadius: 'var(--radius-md)', padding: '11px 20px',
-          fontSize: '13px', color: 'var(--text-secondary)', cursor: 'pointer' }}
+      <button onClick={() => setActivePage('chain')} style={{
+        background: 'transparent', border: '0.5px solid var(--border)',
+        borderRadius: 'var(--radius-md)', padding: '11px 20px',
+        fontSize: '13px', color: 'var(--text-secondary)', cursor: 'pointer',
+      }}
         onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--blue)'; e.currentTarget.style.color = 'var(--blue-light)'; }}
         onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-secondary)'; }}>
         ← Explore the DevOps chain

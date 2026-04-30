@@ -1,12 +1,14 @@
 import React from 'react';
-import useFetch   from '../hooks/useFetch';
-import PhaseCard  from '../components/PhaseCard';
+import useFetch  from '../hooks/useFetch';
+import PhaseCard from '../components/PhaseCard';
 
 export default function ChainPage() {
   const { data: phases, loading, error } = useFetch('/api/phases');
 
   return (
     <div style={{ padding: '32px', animation: 'fadeInUp 0.5s ease both' }}>
+
+      {/* Header */}
       <div style={{ marginBottom: '28px' }}>
         <div style={{ fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase',
           color: 'var(--blue)', fontWeight: 500, marginBottom: '8px' }}>
@@ -15,19 +17,19 @@ export default function ChainPage() {
         <h2 style={{ fontSize: '24px', fontWeight: 600, letterSpacing: '-0.5px' }}>
           9 phases, one continuous loop
         </h2>
-        <p style={{ fontSize: '14px', color: 'var(--text-secondary)', marginTop: '6px', lineHeight: 1.6 }}>
+        <p style={{ fontSize: '14px', color: 'var(--text-secondary)',
+          marginTop: '6px', lineHeight: 1.6 }}>
           Click any phase to expand its description, tools, and a real CLI example.
         </p>
-        {/* Loop badge */}
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', marginTop: '14px',
-          background: '#378ADD14', border: '0.5px solid #378ADD44',
-          borderRadius: '20px', padding: '6px 14px',
-          fontSize: '12px', color: 'var(--blue-light)' }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px',
+          marginTop: '14px', background: '#378ADD14',
+          border: '0.5px solid #378ADD44', borderRadius: '20px',
+          padding: '6px 14px', fontSize: '12px', color: 'var(--blue-light)' }}>
           ↻ Plan → Code → Build → Test → Release → Deploy → Operate → Monitor → Improve → Plan…
         </div>
       </div>
 
-      {/* Loading spinner */}
+      {/* Loading */}
       {loading && (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center',
           gap: '12px', padding: '60px 0', color: 'var(--text-secondary)' }}>
@@ -38,7 +40,7 @@ export default function ChainPage() {
         </div>
       )}
 
-      {/* Error state */}
+      {/* Error */}
       {error && (
         <div style={{ background: 'var(--surface)', border: '0.5px solid #E24B4A44',
           borderRadius: 'var(--radius-lg)', padding: '20px',
@@ -51,7 +53,6 @@ export default function ChainPage() {
       {/* Phase cards */}
       {phases && (
         <div style={{ position: 'relative', paddingLeft: '24px' }}>
-          {/* Vertical timeline line */}
           <div style={{ position: 'absolute', left: '4px', top: '24px', bottom: '24px',
             width: '0.5px', background: 'var(--border)' }} />
           {phases.map((phase, i) => (

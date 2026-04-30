@@ -10,20 +10,17 @@ export default function PhaseCard({ phase, defaultOpen = false }) {
       borderRadius: 'var(--radius-lg)', marginBottom: '10px',
       overflow: 'hidden', transition: 'border-color 0.2s',
     }}>
-      {/* Header — click to toggle */}
       <div onClick={() => setOpen(o => !o)} style={{
         display: 'flex', alignItems: 'center', gap: '12px',
         padding: '14px 18px', cursor: 'pointer',
         background: 'var(--surface)',
       }}>
-        {/* Animated dot */}
         <div style={{
           width: '10px', height: '10px', borderRadius: '50%', flexShrink: 0,
           background: open ? c : 'var(--border)',
           transform: open ? 'scale(1.3)' : 'scale(1)',
           transition: 'all 0.2s',
         }} />
-        {/* Badge */}
         <span style={{
           fontSize: '10px', fontWeight: 500, padding: '3px 10px',
           borderRadius: '12px', flexShrink: 0,
@@ -31,15 +28,12 @@ export default function PhaseCard({ phase, defaultOpen = false }) {
         }}>
           {phase.badge}
         </span>
-        {/* Title */}
         <span style={{ fontSize: '14px', fontWeight: 500, flex: 1 }}>
           {phase.name}
         </span>
-        {/* Tool tag */}
         <span style={{ fontSize: '11px', color: 'var(--text-muted)', flexShrink: 0 }}>
           {phase.tool_example}
         </span>
-        {/* Chevron */}
         <span style={{
           fontSize: '11px', color: 'var(--text-muted)',
           transform: open ? 'rotate(90deg)' : 'rotate(0deg)',
@@ -47,7 +41,6 @@ export default function PhaseCard({ phase, defaultOpen = false }) {
         }}>▶</span>
       </div>
 
-      {/* Expandable body */}
       {open && (
         <div style={{
           padding: '0 18px 18px 40px',
