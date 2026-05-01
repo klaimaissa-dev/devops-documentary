@@ -1,0 +1,22 @@
+# k8s/servicemonitor.yaml
+# A ServiceMonitor tells Prometheus which services to scrape.
+# Prometheus finds this automatically and starts collecting
+# metrics from our backend's /metrics endpoint every 15 seconds.
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: backend-monitor
+  namespace: monitoring
+  labels:
+    release: monitoring    # must match the Helm release name
+spec:
+  namespaceSelector:
+    matchNames:
+      - devops-documentary   # watch services in our app namespace
+  selector:
+    matchLabels:
+      app: backend           # target pods with this label
+  endpoints:
+    - port: "4000"           # scrape this port
+      path: /metrics         # at this path
+      interval: 15s          # every 15 seconds

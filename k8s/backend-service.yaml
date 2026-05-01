@@ -1,13 +1,15 @@
-# backend-service.yaml
 apiVersion: v1
 kind: Service
 metadata:
   name: backend-service
   namespace: devops-documentary
+  labels:
+    app: backend             # label needed for ServiceMonitor selector
 spec:
   selector:
     app: backend
   ports:
-    - port: 4000
+    - name: "4000"           # named port — required by ServiceMonitor
+      port: 4000
       targetPort: 4000
   type: ClusterIP
