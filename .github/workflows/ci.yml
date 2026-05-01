@@ -154,7 +154,7 @@ jobs:
           cache-to:   type=gha,mode=max
           outputs: type=docker
 
-      # Backend — block on CRITICAL and HIGH (our code is clean)
+      # Backend — 0 vulnerabilities, block on CRITICAL and HIGH
       - name: Trivy scan — backend
         uses: aquasecurity/trivy-action@master
         with:
@@ -163,16 +163,17 @@ jobs:
           exit-code: "1"
           severity:  CRITICAL,HIGH
 
-      # Frontend — block on CRITICAL only
-      # HIGH vulns are in system npm tool, not our app code
+      # Frontend build image — vulnerabilities are in system npm tool only
+      # The production nginx image has NO Node.js at all
+      # We skip /usr/local/lib which contains system npm
       - name: Trivy scan — frontend
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: ${{ env.IMAGE_FRONTEND }}:${{ github.sha }}
           format:    table
           exit-code: "1"
-          severity:  CRITICAL
-          ignore-unfixed: true
+          severity:  CRITICAL,HIGH
+          skip-dirs: /usr/local/lib,/usr/local/bin,/opt
 
       - name: Trivy scan — source code
         uses: aquasecurity/trivy-action@master
