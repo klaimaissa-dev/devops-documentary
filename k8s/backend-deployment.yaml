@@ -6,7 +6,7 @@ metadata:
   name: backend
   namespace: devops-documentary
 spec:
-  replicas: 3             # 2 pods for high availability
+  replicas: 2             # 2 pods for high availability
   selector:
     matchLabels:
       app: backend
