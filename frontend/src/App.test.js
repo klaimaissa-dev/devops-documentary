@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import App from './App';
 
 global.fetch = jest.fn(() =>
@@ -8,10 +9,13 @@ global.fetch = jest.fn(() =>
 
 test('renders navbar logo', () => {
   render(<App />);
-  expect(screen.getByText(/documentary/i)).toBeInTheDocument();
+  // getAllByText handles multiple matches — we just check at least one exists
+  const matches = screen.getAllByText(/documentary/i);
+  expect(matches.length).toBeGreaterThan(0);
 });
 
 test('shows intro page by default', () => {
   render(<App />);
-  expect(screen.getByText(/speed of/i)).toBeInTheDocument();
+  const matches = screen.getAllByText(/speed of/i);
+  expect(matches.length).toBeGreaterThan(0);
 });
