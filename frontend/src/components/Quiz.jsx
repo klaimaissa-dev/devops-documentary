@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const KEYS = ['a', 'b', 'c', 'd'];
+const BASE = process.env.REACT_APP_API_URL || '';
 
 export default function Quiz() {
   const [questions, setQuestions] = useState([]);
@@ -10,7 +11,7 @@ export default function Quiz() {
   const [submitting,setSubmitting]= useState(false);
 
   useEffect(() => {
-    fetch('/api/quiz')
+    fetch(`${BASE}/api/quiz`)
       .then(r => r.json())
       .then(j => { setQuestions(j.data || []); setLoading(false); })
       .catch(() => setLoading(false));
@@ -18,7 +19,7 @@ export default function Quiz() {
 
   const submit = async () => {
     setSubmitting(true);
-    const res  = await fetch('/api/quiz/submit', {
+    const res  = await fetch(`${BASE}/api/quiz/submit`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ answers }),
@@ -29,9 +30,7 @@ export default function Quiz() {
   };
 
   if (loading) return (
-    <p style={{ color: 'var(--text-muted)', fontSize: '13px' }}>
-      Loading questions…
-    </p>
+    <p style={{ color: 'var(--text-muted)', fontSize: '13px' }}>Loading questions…</p>
   );
 
   if (result) {
@@ -56,9 +55,7 @@ export default function Quiz() {
           background: 'var(--blue)', color: '#fff', border: 'none',
           borderRadius: 'var(--radius-md)', padding: '10px 24px',
           fontSize: '13px', fontWeight: 500, cursor: 'pointer',
-        }}>
-          Try again
-        </button>
+        }}>Try again</button>
       </div>
     );
   }
@@ -101,9 +98,7 @@ export default function Quiz() {
                     borderRadius: '50%', background: 'var(--blue)' }} />}
                 </div>
                 <span style={{ color: sel ? 'var(--blue-light)' : 'var(--text-primary)' }}>
-                  <strong style={{ color: 'var(--text-muted)', marginRight: '6px' }}>
-                    {key}.
-                  </strong>
+                  <strong style={{ color: 'var(--text-muted)', marginRight: '6px' }}>{key}.</strong>
                   {q.options[key]}
                 </span>
               </div>

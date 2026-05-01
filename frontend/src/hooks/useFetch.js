@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+const BASE = process.env.REACT_APP_API_URL || '';
+
 function useFetch(endpoint) {
   const [data,    setData]    = useState(null);
   const [loading, setLoading] = useState(true);
@@ -9,7 +11,7 @@ function useFetch(endpoint) {
     let cancelled = false;
 
     setLoading(true);
-    fetch(endpoint)
+    fetch(`${BASE}${endpoint}`)
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
