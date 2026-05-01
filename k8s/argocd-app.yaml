@@ -1,0 +1,31 @@
+# k8s/argocd-app.yaml
+# This tells ArgoCD:
+#   - WHERE to find the manifests (your GitHub repo)
+#   - WHERE to deploy them (which cluster + namespace)
+#   - HOW to sync (automatically, every 3 minutes)
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: devops-documentary
+  namespace: argocd
+spec:
+  project: default
+
+  # Source — where ArgoCD reads the manifests from
+  source:
+    repoURL: https://github.com/klaimaissa-dev/devops-documentary
+    targetRevision: main
+    path: k8s            # only watch the k8s/ folder
+
+  # Destination — where to deploy
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: devops-documentary
+
+  # Sync policy — the GitOps magic
+  syncPolicy:
+    automated:
+      prune: true        # delete resources removed from Git
+      selfHeal: true     # revert manual kubectl changes automatically
+    syncOptions:
+      - CreateNamespace=true
