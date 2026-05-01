@@ -1,0 +1,47 @@
+# backend-deployment.yaml
+# IMAGE: replace klaimaissa-dev with your actual username
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: devops-documentary
+spec:
+  replicas: 2             # 2 pods for high availability
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: klaimaissa/devops-documentary-backend:latest
+          ports:
+            - containerPort: 4000
+          # Load all non-secret config from ConfigMap
+          envFrom:
+            - configMapRef:
+                name: app-config
+          # Load secret separately
+          env:
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: DB_PASSWORD
+          # Liveness probe — uses our /api/health endpoint
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 4000
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          # Readiness probe — only send traffic when app is ready
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 4000
+            initialDelaySeconds: 10
+            periodSeconds: 5

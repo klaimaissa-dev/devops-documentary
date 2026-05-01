@@ -1,0 +1,16 @@
+# frontend-service.yaml
+# NodePort exposes the service on a port of the Minikube node
+# so we can access it from our browser with minikube service
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+  namespace: devops-documentary
+spec:
+  selector:
+    app: frontend
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30080    # accessible at minikube-ip:30080
+  type: NodePort

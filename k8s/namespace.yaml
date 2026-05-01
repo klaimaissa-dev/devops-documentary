@@ -1,0 +1,7 @@
+# namespace.yaml
+# A namespace is like a virtual cluster inside your cluster.
+# It isolates our app from other things running in Kubernetes.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: devops-documentary

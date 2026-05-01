@@ -1,0 +1,16 @@
+# postgres-service.yaml
+# A Service gives pods a stable DNS name and IP address.
+# Other pods reach postgres via "postgres-service:5432"
+# ClusterIP = only accessible inside the cluster (not from outside)
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+  namespace: devops-documentary
+spec:
+  selector:
+    app: postgres       # routes traffic to pods with this label
+  ports:
+    - port: 5432
+      targetPort: 5432
+  type: ClusterIP

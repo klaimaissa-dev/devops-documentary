@@ -1,0 +1,16 @@
+# configmap.yaml
+# ConfigMaps store non-sensitive configuration as key-value pairs.
+# Pods read these as environment variables.
+# Unlike Secrets, these are NOT base64 encoded — plain text only.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: devops-documentary
+data:
+  DB_HOST:     "postgres-service"   # resolves via Kubernetes DNS
+  DB_PORT:     "5432"
+  DB_NAME:     "devops_documentary"
+  DB_USER:     "postgres"
+  PORT:        "4000"
+  CORS_ORIGIN: "http://localhost:3000"
