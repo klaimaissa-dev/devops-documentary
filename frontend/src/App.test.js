@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import App from './App';
 
 global.fetch = jest.fn(() =>
@@ -9,7 +8,6 @@ global.fetch = jest.fn(() =>
 
 test('renders navbar logo', () => {
   render(<App />);
-  // getAllByText handles multiple matches — we just check at least one exists
   const matches = screen.getAllByText(/documentary/i);
   expect(matches.length).toBeGreaterThan(0);
 });
